@@ -35,6 +35,11 @@ public class RoombaTestScript : MonoBehaviour
             serialHandler.Write("a");
             text.text = "←";
         }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            serialHandler.Write("s");
+            text.text = "↓";
+        }
         else
         {
             text.text = "停";
