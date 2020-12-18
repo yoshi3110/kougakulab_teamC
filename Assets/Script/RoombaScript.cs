@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RoombaTestScript : MonoBehaviour
+public class RoombaScript : MonoBehaviour
 {
     public Text text;
     public SerialHandler serialHandler;
     int c = 0;
+    int virtualWallActive = 0;
+    public GameObject virtualWallText;
 
     void Start()
     {
@@ -18,9 +20,22 @@ public class RoombaTestScript : MonoBehaviour
     IEnumerator sendRoombaData()
     {
         //Debug.Log(c);
-        //c++;
+        c++;
+
+        if (c % 30 == 0) {
+            serialHandler.Write("v");
+        }
+        if (virtualWallActive > 0)
+        {
+            virtualWallText.SetActive(true);
+            virtualWallActive--;
+        }
+        else
+        {
+            virtualWallText.SetActive(false);
+        }
         yield return new WaitForSeconds(0.05f);
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow) && virtualWallActive<=0)
         {
             serialHandler.Write("w");
             text.text = "↑";
@@ -44,6 +59,7 @@ public class RoombaTestScript : MonoBehaviour
         {
             text.text = "停";
         }
+        
 
         StartCoroutine(sendRoombaData());
     }
@@ -52,12 +68,15 @@ public class RoombaTestScript : MonoBehaviour
     {
         var data = message.Split(
                 new string[] { "\t" }, System.StringSplitOptions.None);
-        Debug.Log(message);
+        Debug.Log("Received"+ message);
         if (data.Length < 2) return; // ここではLengthは1なので、特に何も記述しない。
 
         try
         {
-
+            if(data[0] == "v")
+            {
+                virtualWallActive = 100;
+            }
         }
         catch (System.Exception e)
         {

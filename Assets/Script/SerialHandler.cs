@@ -8,6 +8,7 @@ public class SerialHandler : MonoBehaviour
     public delegate void SerialDataReceivedEventHandler(string message);
     public event SerialDataReceivedEventHandler OnDataReceived;
 
+    public string portKey;
     public string portName = "COM_NAME";
     public int baudRate = 115200;
 
@@ -20,6 +21,7 @@ public class SerialHandler : MonoBehaviour
 
     void Awake()
     {
+        portName = PlayerPrefs.GetString(portKey, "COM7");
         Open();
     }
 
