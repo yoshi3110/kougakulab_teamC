@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VirtualWall.unity
     guid: f5cab68ed52e6d64a8912e6e3ec19978
+  - enabled: 1
+    path: Assets/Scenes/SubCamera.unity
+    guid: c4cc7433bbfe8a84588e62ef8be5d994
   m_configObjects: {}
