@@ -13,7 +13,7 @@ public class PortSetting : MonoBehaviour
     {
         if (Camera)
         {
-            inputField.text = PlayerPrefs.GetInt(myPortKey, 0).ToString();
+            inputField.text = PlayerPrefs.GetInt(myPortKey+"INT", 0).ToString();
         }
         else
         {
@@ -24,7 +24,25 @@ public class PortSetting : MonoBehaviour
     {
         if (Camera)
         {
-            PlayerPrefs.SetInt(myPortKey, int.Parse(inputField.text));
+            string sBuf = inputField.text;
+            if (sBuf != "")
+            {
+                int num = int.Parse(sBuf);
+                Debug.Log("num;" + num);
+
+                WebCamDevice[] devices = WebCamTexture.devices;
+                if (devices.Length > num)
+                {
+                    string camName = devices[num].name;
+                    PlayerPrefs.SetInt(myPortKey + "INT", num);
+                    PlayerPrefs.SetString(myPortKey, camName);
+                    Debug.Log(myPortKey + ":" + camName);
+                }
+                else
+                {
+                    Debug.Log("”ÍˆÍŠO‚ÌƒJƒƒ‰‚ğw’è‚µ‚Ä‚¢‚Ü‚·");
+                }
+            }
         }
         else
         {

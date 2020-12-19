@@ -18,16 +18,28 @@ public class WebCam : MonoBehaviour
     // スタート時に呼ばれる
     void Start () 
     {
-        CamNum = PlayerPrefs.GetInt(CamName, 0);
+        string savedCamName = PlayerPrefs.GetString(CamName, "");
+        Debug.Log("savedCamName = " + savedCamName);
+        if (savedCamName != "")
+        {
+            this.rawImage = GetComponent<RawImage>();
+            this.webCamTexture = new WebCamTexture(savedCamName);
+            Debug.Log("savedcam:"+savedCamName);
+            this.rawImage.texture = this.webCamTexture;
+            this.webCamTexture.Play();
+        }
+        else
+        {
+            CamNum = PlayerPrefs.GetInt(CamName, 0);
 
-        WebCamDevice[] devices = WebCamTexture.devices;
-        // Webカメラの開始
-        this.rawImage = GetComponent<RawImage>();
-       // this.webCamTexture = new WebCamTexture(INPUT_SIZE, INPUT_SIZE, FPS);
-        this.webCamTexture = new WebCamTexture(devices[CamNum].name);
-        Debug.Log(devices[CamNum].name);
-        this.rawImage.texture = this.webCamTexture;
-        this.webCamTexture.Play();
+            WebCamDevice[] devices = WebCamTexture.devices;
+            // Webカメラの開始
+            this.rawImage = GetComponent<RawImage>();
+            // this.webCamTexture = new WebCamTexture(INPUT_SIZE, INPUT_SIZE, FPS);
+            this.webCamTexture = new WebCamTexture(devices[CamNum].name);
+            Debug.Log(devices[CamNum].name);
+            this.webCamTexture.Play();
+        }
     }
 
     public void closeCam() {
