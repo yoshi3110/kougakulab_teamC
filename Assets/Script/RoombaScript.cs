@@ -22,9 +22,11 @@ public class RoombaScript : MonoBehaviour
         //Debug.Log(c);
         c++;
 
-        if (c % 30 == 0) {
+        if (c % 12 == 0) {
             serialHandler.Write("v");
+            Debug.Log("WallCheck");
         }
+
         if (virtualWallActive > 0)
         {
             virtualWallText.SetActive(true);
@@ -43,12 +45,12 @@ public class RoombaScript : MonoBehaviour
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             serialHandler.Write("d");
-            text.text = "→";
+            text.text = "↷";
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
             serialHandler.Write("a");
-            text.text = "←";
+            text.text = "↶";
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
@@ -66,9 +68,12 @@ public class RoombaScript : MonoBehaviour
 
     void OnDataReceived(string message)
     {
+        Debug.Log("Received"+ message);
+        virtualWallActive = 25;
+
         var data = message.Split(
                 new string[] { "\t" }, System.StringSplitOptions.None);
-        Debug.Log("Received"+ message);
+       
         if (data.Length < 2) return; // ここではLengthは1なので、特に何も記述しない。
 
         try
