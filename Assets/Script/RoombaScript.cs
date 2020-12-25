@@ -10,6 +10,7 @@ public class RoombaScript : MonoBehaviour
     int c = 0;
     int virtualWallActive = 0;
     public GameObject virtualWallText;
+    string RecentKey;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class RoombaScript : MonoBehaviour
         c++;
 
         if (c % 12 == 0) {
+            serialHandler.Write("v");
             serialHandler.Write("v");
             Debug.Log("WallCheck");
         }
@@ -39,26 +41,42 @@ public class RoombaScript : MonoBehaviour
         yield return new WaitForSeconds(0.05f);
         if (Input.GetKey(KeyCode.UpArrow) && virtualWallActive<=0)
         {
-            serialHandler.Write("w");
+            if(RecentKey!="w"){
+                serialHandler.Write("w");
+            }
+            RecentKey = "w";
             text.text = "↑";
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            serialHandler.Write("d");
+            if(RecentKey!="d"){
+                serialHandler.Write("d");
+            }
+            RecentKey = "d";
             text.text = "↷";
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            serialHandler.Write("a");
+            if(RecentKey != "a"){
+                serialHandler.Write("a");
+            }
+            RecentKey = "a";
             text.text = "↶";
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
-            serialHandler.Write("s");
+            if(RecentKey != "s"){
+                serialHandler.Write("s");
+            }
+            RecentKey = "s";
             text.text = "↓";
         }
         else
         {
+            if(RecentKey != "n"){
+                serialHandler.Write("n");
+            }
+            RecentKey = "n";
             text.text = "停";
         }
         
@@ -69,7 +87,7 @@ public class RoombaScript : MonoBehaviour
     void OnDataReceived(string message)
     {
         Debug.Log("Received"+ message);
-        virtualWallActive = 25;
+        virtualWallActive = 20;
 
         var data = message.Split(
                 new string[] { "\t" }, System.StringSplitOptions.None);
@@ -80,7 +98,7 @@ public class RoombaScript : MonoBehaviour
         {
             if(data[0] == "v")
             {
-                virtualWallActive = 100;
+                virtualWallActive = 25;
             }
         }
         catch (System.Exception e)

@@ -14,6 +14,7 @@ public class MainSceneManager : MonoBehaviour
     {
         public string sceneName;
         public string password;
+        public bool opened = false;
     }
 
 
@@ -33,11 +34,14 @@ public class MainSceneManager : MonoBehaviour
         int i = checkPassWord(passField.text);
         if (i >= 0)
         {
-            GameObject newButton = Instantiate(callButtonObj);
-            newButton.transform.SetParent(scrollViewContent);
-            newButton.SetActive(true);
-            CallButtonScript callButtonScript = newButton.GetComponent<CallButtonScript>();
-            callButtonScript.setName(subScenes[i].sceneName);
+            if(subScenes[i].opened==false){
+                subScenes[i].opened = true;
+                GameObject newButton = Instantiate(callButtonObj);
+                newButton.transform.SetParent(scrollViewContent);
+                newButton.SetActive(true);
+                CallButtonScript callButtonScript = newButton.GetComponent<CallButtonScript>();
+                callButtonScript.setName(subScenes[i].sceneName);
+            }
         }
     }
 
