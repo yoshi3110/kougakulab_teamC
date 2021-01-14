@@ -45,7 +45,7 @@ public class RoombaScript : MonoBehaviour
                 serialHandler.Write("w");
             }
             RecentKey = "w";
-            text.text = "↑";
+            text.text = "前進";
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
@@ -53,7 +53,7 @@ public class RoombaScript : MonoBehaviour
                 serialHandler.Write("d");
             }
             RecentKey = "d";
-            text.text = "↷";
+            text.text = "右転";
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -61,7 +61,7 @@ public class RoombaScript : MonoBehaviour
                 serialHandler.Write("a");
             }
             RecentKey = "a";
-            text.text = "↶";
+            text.text = "左転";
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
@@ -69,7 +69,7 @@ public class RoombaScript : MonoBehaviour
                 serialHandler.Write("s");
             }
             RecentKey = "s";
-            text.text = "↓";
+            text.text = "後退";
         }
         else
         {
@@ -77,7 +77,7 @@ public class RoombaScript : MonoBehaviour
                 serialHandler.Write("n");
             }
             RecentKey = "n";
-            text.text = "停";
+            text.text = "停止";
         }
         
 

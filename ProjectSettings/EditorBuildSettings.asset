@@ -9,18 +9,30 @@ EditorBuildSettings:
     path: Assets/Scenes/StartUpScene.unity
     guid: 4d3bf22cfc380da4892f6608aa57a941
   - enabled: 1
+    path: Assets/Scenes/VIdeoScene.unity
+    guid: efa0c070731f5844f802507a5aa89ffa
+  - enabled: 1
     path: Assets/Scenes/RoombaMain.unity
     guid: f5930b1b3ef2f3d468c12366fb20b16f
   - enabled: 1
     path: Assets/Scenes/SubTest.unity
     guid: 2552a81e97996634a8cbf214a7e819cf
   - enabled: 1
-    path: Assets/Scenes/SwitchTest.unity
+    path: "Assets/Scenes/\u3064\u304B\u308F\u306A\u3044/SwitchTest.unity"
     guid: e2b7fb4dd3433d64a96c876994e51943
   - enabled: 1
     path: Assets/Scenes/VirtualWall.unity
     guid: f5cab68ed52e6d64a8912e6e3ec19978
   - enabled: 1
-    path: Assets/Scenes/SubCamera.unity
+    path: "Assets/Scenes/\u3064\u304B\u308F\u306A\u3044/SubCamera.unity"
     guid: c4cc7433bbfe8a84588e62ef8be5d994
+  - enabled: 1
+    path: Assets/Scenes/HelpScene.unity
+    guid: bb095c5333088da4896e3de254829ec3
+  - enabled: 1
+    path: "Assets/Scenes/\u8AAC\u660E\u66F8.unity"
+    guid: 35216ebf8e29d5044bb24797d2a0e9c1
+  - enabled: 1
+    path: Assets/Scenes/End.unity
+    guid: 5399663ef6316c645b21097a6667f79e
   m_configObjects: {}

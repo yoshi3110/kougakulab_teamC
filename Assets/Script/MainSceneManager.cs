@@ -9,18 +9,25 @@ public class MainSceneManager : MonoBehaviour
     public subScene[] subScenes;
     public GameObject callButtonObj;
     public Transform scrollViewContent;
+    public RawImage subCamImage;
+    AudioSource audioSource;
+    [SerializeField] AudioClip passClear;
+    [SerializeField] AudioClip buttonSE;
+
     [System.Serializable]
     public class subScene
     {
         public string sceneName;
         public string password;
         public bool opened = false;
+        public GameObject specialButton;//ここがnullでないときは指定されたボタンを有効にする
     }
 
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -36,12 +43,29 @@ public class MainSceneManager : MonoBehaviour
         {
             if(subScenes[i].opened==false){
                 subScenes[i].opened = true;
-                GameObject newButton = Instantiate(callButtonObj);
-                newButton.transform.SetParent(scrollViewContent);
-                newButton.SetActive(true);
-                CallButtonScript callButtonScript = newButton.GetComponent<CallButtonScript>();
-                callButtonScript.setName(subScenes[i].sceneName);
+                audioSource.PlayOneShot(passClear);
+                if (subScenes[i].specialButton != null)
+                {
+                    subScenes[i].specialButton.transform.SetParent(scrollViewContent);
+                    subScenes[i].specialButton.SetActive(true);
+                }
+                else
+                {
+                    GameObject newButton = Instantiate(callButtonObj);
+                    newButton.transform.SetParent(scrollViewContent);
+                    newButton.SetActive(true);
+                    CallButtonScript callButtonScript = newButton.GetComponent<CallButtonScript>();
+                    callButtonScript.setName(subScenes[i].sceneName);
+                }
             }
+            else
+            {
+                audioSource.PlayOneShot(buttonSE);
+            }
+        }
+        else
+        {
+            audioSource.PlayOneShot(buttonSE);
         }
     }
 
@@ -56,5 +80,10 @@ public class MainSceneManager : MonoBehaviour
             }
         }
         return -1;
+    }
+
+    public void CamChange() {
+        audioSource.PlayOneShot(buttonSE);
+        subCamImage.enabled = !subCamImage.IsActive();
     }
 }
