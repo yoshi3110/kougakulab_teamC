@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3efbb94e8887bff4aa6232a940023883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serialHandler: {fileID: 1165952199}
+  serialHandler: {fileID: 0}
 --- !u!4 &690794026
 Transform:
   m_ObjectHideFlags: 0
@@ -849,18 +849,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 736ee3ded4f6d4048b60b5b5f8c54cfd, type: 3}
---- !u!114 &1165952199 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 91433530950323584, guid: 736ee3ded4f6d4048b60b5b5f8c54cfd,
-    type: 3}
-  m_PrefabInstance: {fileID: 1165952198}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fabd4464ab0210f4c98a7f846b7cb644, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1727131701
 GameObject:
   m_ObjectHideFlags: 0

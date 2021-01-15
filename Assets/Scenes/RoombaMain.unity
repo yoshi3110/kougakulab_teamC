@@ -2033,7 +2033,7 @@ MonoBehaviour:
     opened: 0
     specialButton: {fileID: 0}
   - sceneName: "\u76E3\u8996\u30AB\u30E1\u30E9"
-    password: qwerty
+    password: "\u3075\u3046\u305B\u3093"
     opened: 0
     specialButton: {fileID: 1175541873}
   - sceneName: "\u8AAC\u660E\u66F8"
@@ -2044,6 +2044,14 @@ MonoBehaviour:
     password: GameClear
     opened: 0
     specialButton: {fileID: 0}
+  - sceneName: "\u76E3\u8996\u30AB\u30E1\u30E9"
+    password: "\u30D5\u30A6\u30BB\u30F3"
+    opened: 0
+    specialButton: {fileID: 318312204}
+  - sceneName: "\u76E3\u8996\u30AB\u30E1\u30E9"
+    password: "\u30D0\u30EB\u30FC\u30F3"
+    opened: 0
+    specialButton: {fileID: 318312204}
   callButtonObj: {fileID: 573962360}
   scrollViewContent: {fileID: 298677187}
   subCamImage: {fileID: 318312206}
