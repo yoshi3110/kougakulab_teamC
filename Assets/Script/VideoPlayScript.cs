@@ -22,7 +22,8 @@ public class VideoPlayScript : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.S)&& Input.GetKey(KeyCode.K))
         {
-            CallScene();
+            PlayerPrefs.SetInt("Restart", 1);
+            SceneManager.LoadScene("RoombaMain");
         }
       
     }
@@ -33,6 +34,7 @@ public class VideoPlayScript : MonoBehaviour
         Invoke("CallScene", (float)vtime+0.5f);
     }
     void CallScene() {
+        PlayerPrefs.SetInt("Restart", 0);
         SceneManager.LoadScene("RoombaMain");
     }
 }

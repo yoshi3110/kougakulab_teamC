@@ -11,11 +11,24 @@ public class RoombaScript : MonoBehaviour
     int virtualWallActive = 0;
     public GameObject virtualWallText;
     string RecentKey;
+    string nowKey;
+    [SerializeField] Image wImage;
+    [SerializeField] Image sImage;
+    [SerializeField] Image dImage;
+    [SerializeField] Image aImage;
 
     void Start()
     {
         serialHandler.OnDataReceived += OnDataReceived;
         StartCoroutine(sendRoombaData());
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(2))
+        {
+            virtualWallActive = 25;
+        } 
     }
 
     IEnumerator sendRoombaData()
@@ -39,33 +52,37 @@ public class RoombaScript : MonoBehaviour
             virtualWallText.SetActive(false);
         }
         yield return new WaitForSeconds(0.05f);
-        if (Input.GetKey(KeyCode.UpArrow) && virtualWallActive<=0)
+        if ((Input.GetKey(KeyCode.UpArrow)|| nowKey == "w") && virtualWallActive<=0)
         {
-            if(RecentKey!="w"){
+            NowKeyColor("w");
+            if (RecentKey!="w"){
                 serialHandler.Write("w");
             }
             RecentKey = "w";
             text.text = "前進";
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.RightArrow)|| nowKey == "d")
         {
-            if(RecentKey!="d"){
+            NowKeyColor("d");
+            if (RecentKey!="d"){
                 serialHandler.Write("d");
             }
             RecentKey = "d";
             text.text = "右転";
         }
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.LeftArrow) || nowKey == "a")
         {
-            if(RecentKey != "a"){
+            NowKeyColor("a");
+            if (RecentKey != "a"){
                 serialHandler.Write("a");
             }
             RecentKey = "a";
             text.text = "左転";
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.DownArrow)|| nowKey == "s")
         {
-            if(RecentKey != "s"){
+            NowKeyColor("s");
+            if (RecentKey != "s"){
                 serialHandler.Write("s");
             }
             RecentKey = "s";
@@ -73,7 +90,8 @@ public class RoombaScript : MonoBehaviour
         }
         else
         {
-            if(RecentKey != "n"){
+            NowKeyColor("n");
+            if (RecentKey != "n"){
                 serialHandler.Write("n");
             }
             RecentKey = "n";
@@ -82,6 +100,37 @@ public class RoombaScript : MonoBehaviour
         
 
         StartCoroutine(sendRoombaData());
+    }
+
+    public void SetNowKey(string k)
+    {
+        nowKey = k;
+        NowKeyColor(k);
+    }
+    public void NowKeyColor(string k)
+    {
+        wImage.color = Color.white;
+        sImage.color = Color.white;
+        dImage.color = Color.white;
+        aImage.color = Color.white;
+        switch (k)
+        {
+            case "w":
+                wImage.color = Color.green;
+                break;
+            case "s":
+                sImage.color = Color.green;
+                break;
+            case "d":
+                dImage.color = Color.green;
+                break;
+            case "a":
+                aImage.color = Color.green;
+                break;
+            default:
+                break;
+
+        }
     }
 
     void OnDataReceived(string message)
